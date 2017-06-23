@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Oauth2 test start page.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+
+<body ng-app="app" ng-controller="home as home">
+
+<form action="/data?name=home.user">
+    <button type="submit">Get access to data</button>
+</form>
+
+<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module("app", []).controller("home", function($http) {
+        var self = this;
+        $http.get("/user").success(function(data) {
+            self.user = data.userAuthentication.details.name;
+            self.authenticated = true;
+        }).error(function() {
+            self.user = "N/A";
+            self.authenticated = false;
+        });
+    });
+</script>
+
+<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module("app", []).controller("home", function($http) {
+        var self = this;
+        $http.get("/user").success(function(data) {
+            self.user = data.userAuthentication.details.name;
+            self.authenticated = true;
+        }).error(function() {
+            self.user = "N/A";
+            self.authenticated = false;
+        });
+    });
+</script>
+
+</body>
+
+</html>
